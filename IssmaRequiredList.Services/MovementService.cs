@@ -1,6 +1,7 @@
 ﻿using IssmaRequiredList.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace IssmaRequiredList.Services
     public class MovementService
     {
         //Create
-        public bool CreateMovement(Movement model)
+        public async Task<bool> CreateMovementAsync(Movement model)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
@@ -19,35 +20,35 @@ namespace IssmaRequiredList.Services
                 else
                 {
                     ctx.Movements.Add(model);
-                    return ctx.SaveChanges() == 1;
+                    return await ctx.SaveChangesAsync() == 1;
                 }
             }
         }
         //Read
-        public Movement GetMovementById(int id)
+        public async Task<Movement> GetMovementByIdAsync(int id)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Movements.FirstOrDefault(m => m.MovementId == id);
+                var entity = await ctx.Movements.FindAsync(id);
                 if (entity == null)
                     throw new InvalidOperationException();
                 else
                     return entity;
             }
         }
-        public IEnumerable<Movement> GetAllMovements()
+        public async Task<IEnumerable<Movement>> GetAllMovementsAsync()
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                return ctx.Movements.ToArray();
+                return await ctx.Movements.ToListAsync();
             }
         }
         //Update
-        public bool UpdateMovement(Movement model)
+        public async Task<bool> UpdateMovement(Movement model)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                var currentModel = ctx.Movements.FirstOrDefault(m => model.MovementId == m.MovementId);
+                var currentModel = await ctx.Movements.FindAsync(model.MovementId);
 
                 if (currentModel == null)
                     return false;
@@ -56,22 +57,22 @@ namespace IssmaRequiredList.Services
                     currentModel.MovementNumber = model.MovementNumber;
                     currentModel.PieceId = model.PieceId;
 
-                    return ctx.SaveChanges() == 1;
+                    return await ctx.SaveChangesAsync() == 1;
                 }
             }
         }
         //Delete
-        public bool DeleteMovementById(int id)
+        public async Task<bool> DeleteMovementById(int id)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Movements.FirstOrDefault(m => m.MovementId == id);
+                var entity = await ctx.Movements.FindAsync(id);
                 if (entity == null)
                     throw new InvalidOperationException();
                 else
                 {
                     ctx.Movements.Remove(entity);
-                    return ctx.SaveChanges() == 1;
+                    return await ctx.SaveChangesAsync() == 1;
                 }
 
             }

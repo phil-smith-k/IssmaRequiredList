@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace IssmaRequiredList.Services
 {
-    // TODO - Crud
     public class PublisherService
     {
         //Create
@@ -64,5 +63,20 @@ namespace IssmaRequiredList.Services
             }
         }
         //Delete
+        public async Task<bool> DeletePublisherByIdAsync(int id)
+        {
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                var entity = await ctx.Publishers.FindAsync(id);
+
+                if (entity == null)
+                    return false;
+                else
+                {
+                    ctx.Publishers.Remove(entity);
+                    return await ctx.SaveChangesAsync() == 1;
+                }
+            }
+        }
     }
 }
