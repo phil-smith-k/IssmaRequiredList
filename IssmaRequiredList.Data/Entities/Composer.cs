@@ -7,39 +7,27 @@ using System.Threading.Tasks;
 
 namespace IssmaRequiredList.Data
 {
-    public enum Gender { Agender, CisFemale, CisMale, Trans, NonBinary, TransMan, TransWoman }
+    public enum Gender { Agender, CisFemale, CisMale, NonBinary, Trans }
 
-    public class ComposerEntity
+    public class Composer
     {
         private DateTime _dateOfDeath;
         
-        [Key]
         public int ComposerId { get; set; }
-
-        public virtual ICollection<PieceEntity> PieceCatalog { get; set; }
-
-        [Required]
         public string FirstName { get; set; }
-
-        [Required]
         public string LastName { get; set; }
-
-        [Required]
+        public string FullName => $"{this.FirstName} {this.LastName}";
+        public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-
         public DateTime DateOfDeath
         {
+            get => _dateOfDeath;
             set
             {
                 if (!this.IsAlive)
                     _dateOfDeath = value;
             }
         }
-
-        public bool IsAlive { get; set; } = true;
-
-        public Gender? Gender { get; set; }
-
         public int Age
         {
             get
@@ -58,8 +46,10 @@ namespace IssmaRequiredList.Data
                 }
             }
         }
+        public bool IsAlive { get; set; } = true;
 
-        public string FullName => $"{this.FirstName} {this.LastName}";
+        public virtual ICollection<Piece> ArrangerPieces { get; set; }
+        public virtual ICollection<Piece> ComposerPieces { get; set; }
 
         public DateTime GetDateOfDeath()
         {

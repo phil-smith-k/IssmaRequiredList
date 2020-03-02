@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace IssmaRequiredList.Data
 {
-    public class MovementEntity
+    public class Movement
     {
-        [Key]
         public int MovementId { get; set; }
-
-        [Required]
         public int MovementNumber { get; set; }
 
-        public virtual PieceEntity Piece { get; set; }
+        public int PieceId { get; set; }
+        public virtual Piece Piece { get; set; }
     }
 }

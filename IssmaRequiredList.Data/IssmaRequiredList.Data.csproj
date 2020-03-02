@@ -51,15 +51,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComposerEntity.cs" />
-    <Compile Include="MovementEntity.cs" />
-    <Compile Include="PieceEntity.cs" />
+    <Compile Include="Entities\Composer.cs" />
+    <Compile Include="DbConfigs\ApplicationDbContext.cs" />
+    <Compile Include="DbConfigs\ComposerConfig.cs" />
+    <Compile Include="DbConfigs\MovementConfig.cs" />
+    <Compile Include="DbConfigs\PieceConfig.cs" />
+    <Compile Include="DbConfigs\PublisherConfig.cs" />
+    <Compile Include="Migrations\202003020222099_InitialMigration.cs" />
+    <Compile Include="Migrations\202003020222099_InitialMigration.designer.cs">
+      <DependentUpon>202003020222099_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003020258111_PublisherConfig.cs" />
+    <Compile Include="Migrations\202003020258111_PublisherConfig.designer.cs">
+      <DependentUpon>202003020258111_PublisherConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Entities\Movement.cs" />
+    <Compile Include="Entities\Piece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublisherEntity.cs" />
+    <Compile Include="Entities\Publisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003020222099_InitialMigration.resx">
+      <DependentUpon>202003020222099_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003020258111_PublisherConfig.resx">
+      <DependentUpon>202003020258111_PublisherConfig.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
