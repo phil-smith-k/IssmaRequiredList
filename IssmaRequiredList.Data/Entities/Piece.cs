@@ -14,6 +14,7 @@ namespace IssmaRequiredList.Data
         public string Title { get; set; }
         public string Requirement { get; set; }
         public TimeSpan Duration { get; set; }
+        public int YearPublished { get; set; }
         public bool IsMultiMovement { get; set; }
         public bool IsOutOfPrint { get; set; }
 

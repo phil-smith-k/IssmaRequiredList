@@ -65,6 +65,10 @@
     <Compile Include="Migrations\202003020258111_PublisherConfig.designer.cs">
       <DependentUpon>202003020258111_PublisherConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003021351438_AddedYearPublishedColumnToPiecesTable.cs" />
+    <Compile Include="Migrations\202003021351438_AddedYearPublishedColumnToPiecesTable.designer.cs">
+      <DependentUpon>202003021351438_AddedYearPublishedColumnToPiecesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Movement.cs" />
     <Compile Include="Entities\Piece.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003020258111_PublisherConfig.resx">
       <DependentUpon>202003020258111_PublisherConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003021351438_AddedYearPublishedColumnToPiecesTable.resx">
+      <DependentUpon>202003021351438_AddedYearPublishedColumnToPiecesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

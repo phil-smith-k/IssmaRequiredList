@@ -19,6 +19,7 @@ namespace IssmaRequiredList.Data.EntityConfigurations
             this.Property(p => p.Requirement).IsOptional();
             this.Property(p => p.Duration).IsOptional();
             this.Property(p => p.ArrangerId).IsOptional();
+            this.Property(p => p.YearPublished).IsRequired();
 
             // Relationship Config
             this.HasMany(p => p.Movements)
