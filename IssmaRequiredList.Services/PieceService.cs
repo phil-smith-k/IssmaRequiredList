@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 
 namespace IssmaRequiredList.Services
 {
-    //TODO - Crud
     public class PieceService
     {
         //Create
         public async Task<bool> CreatePieceAsync(Piece model)
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var con = new ApplicationDbContext())
             {
                 if (model == null)
                     return false;
                 else
                 {
-                    ctx.Pieces.Add(model);
-                    return await ctx.SaveChangesAsync() == 1;
+                    con.Pieces.Add(model);
+                    return await con.SaveChangesAsync() == 1;
                 }
             }
         }
         //Read
         public async Task<Piece> GetPieceById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var con = new ApplicationDbContext())
             {
-                var entity = await ctx.Pieces.FindAsync(id);
+                var entity = await con.Pieces.FindAsync(id);
 
                 if (entity == null)
                     throw new InvalidOperationException();
@@ -42,17 +41,17 @@ namespace IssmaRequiredList.Services
         }
         public async Task<IEnumerable<Piece>> GetPiecesAsync()
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var con = new ApplicationDbContext())
             {
-                return await ctx.Pieces.ToListAsync();
+                return await con.Pieces.ToListAsync();
             }
         }
         //Update
         public async Task<bool> UpdatePieceAsync(Piece model)
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var con = new ApplicationDbContext())
             {
-                var currentModel = await ctx.Pieces.FindAsync(model.PieceId);
+                var currentModel = await con.Pieces.FindAsync(model.PieceId);
 
                 if (currentModel == null)
                     return false;
@@ -68,16 +67,23 @@ namespace IssmaRequiredList.Services
                     currentModel.ArrangerId = model.ArrangerId;
                     currentModel.PublisherId = model.PublisherId;
 
-                    return await ctx.SaveChangesAsync() == 1;
+                    return await con.SaveChangesAsync() == 1;
                 }
             }
         }
         //Delete
         public async Task<bool> DeletePieceByIdAsync(int id)
         {
-            using(var ctx = new ApplicationDbContext())
+            using(var con = new ApplicationDbContext())
             {
-                throw new NotImplementedException();
+                var entity = await con.Pieces.FindAsync();
+                if (entity == null)
+                    throw new InvalidOperationException();
+                else
+                {
+                    con.Pieces.Remove(entity);
+                    return await con.SaveChangesAsync() == 1;
+                }
             }
         }
     }

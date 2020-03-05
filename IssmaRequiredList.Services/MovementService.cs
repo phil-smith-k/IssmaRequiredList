@@ -13,23 +13,23 @@ namespace IssmaRequiredList.Services
         //Create
         public async Task<bool> CreateMovementAsync(Movement model)
         {
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext con = new ApplicationDbContext())
             {
                 if (model == null)
                     return false;
                 else
                 {
-                    ctx.Movements.Add(model);
-                    return await ctx.SaveChangesAsync() == 1;
+                    con.Movements.Add(model);
+                    return await con.SaveChangesAsync() == 1;
                 }
             }
         }
         //Read
         public async Task<Movement> GetMovementByIdAsync(int id)
         {
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext con = new ApplicationDbContext())
             {
-                var entity = await ctx.Movements.FindAsync(id);
+                var entity = await con.Movements.FindAsync(id);
                 if (entity == null)
                     throw new InvalidOperationException();
                 else
@@ -38,17 +38,17 @@ namespace IssmaRequiredList.Services
         }
         public async Task<IEnumerable<Movement>> GetAllMovementsAsync()
         {
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext con = new ApplicationDbContext())
             {
-                return await ctx.Movements.ToListAsync();
+                return await con.Movements.ToListAsync();
             }
         }
         //Update
         public async Task<bool> UpdateMovement(Movement model)
         {
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext con = new ApplicationDbContext())
             {
-                var currentModel = await ctx.Movements.FindAsync(model.MovementId);
+                var currentModel = await con.Movements.FindAsync(model.MovementId);
 
                 if (currentModel == null)
                     return false;
@@ -57,22 +57,22 @@ namespace IssmaRequiredList.Services
                     currentModel.MovementNumber = model.MovementNumber;
                     currentModel.PieceId = model.PieceId;
 
-                    return await ctx.SaveChangesAsync() == 1;
+                    return await con.SaveChangesAsync() == 1;
                 }
             }
         }
         //Delete
         public async Task<bool> DeleteMovementById(int id)
         {
-            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext con = new ApplicationDbContext())
             {
-                var entity = await ctx.Movements.FindAsync(id);
+                var entity = await con.Movements.FindAsync(id);
                 if (entity == null)
                     throw new InvalidOperationException();
                 else
                 {
-                    ctx.Movements.Remove(entity);
-                    return await ctx.SaveChangesAsync() == 1;
+                    con.Movements.Remove(entity);
+                    return await con.SaveChangesAsync() == 1;
                 }
 
             }
