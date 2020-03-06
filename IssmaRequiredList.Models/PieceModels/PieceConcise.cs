@@ -8,5 +8,6 @@ namespace IssmaRequiredList.Models.PieceModels
 {
     public class PieceConcise
     {
+
     }
 }

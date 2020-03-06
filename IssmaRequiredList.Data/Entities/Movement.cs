@@ -11,6 +11,7 @@ namespace IssmaRequiredList.Data
     {
         public int MovementId { get; set; }
         public int MovementNumber { get; set; }
+        public string MovementName { get; set; }
 
         public int PieceId { get; set; }
         public virtual Piece Piece { get; set; }

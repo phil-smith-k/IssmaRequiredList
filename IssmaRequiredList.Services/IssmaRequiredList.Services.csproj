@@ -66,6 +66,10 @@
       <Project>{798FFD33-76FD-41B6-AAA6-03E4CD96A193}</Project>
       <Name>IssmaRequiredList.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IssmaRequiredList.Models\IssmaRequiredList.Models.csproj">
+      <Project>{9FD1264F-96B6-4FDB-BFDC-395177CEF7A8}</Project>
+      <Name>IssmaRequiredList.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

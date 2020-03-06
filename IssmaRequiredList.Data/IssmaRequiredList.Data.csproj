@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202003062149427_DeletedIsMultiMovementColumn.designer.cs">
       <DependentUpon>202003062149427_DeletedIsMultiMovementColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003062215415_AddedMovementNameColumn.cs" />
+    <Compile Include="Migrations\202003062215415_AddedMovementNameColumn.designer.cs">
+      <DependentUpon>202003062215415_AddedMovementNameColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Movement.cs" />
     <Compile Include="Entities\Piece.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003062149427_DeletedIsMultiMovementColumn.resx">
       <DependentUpon>202003062149427_DeletedIsMultiMovementColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003062215415_AddedMovementNameColumn.resx">
+      <DependentUpon>202003062215415_AddedMovementNameColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
